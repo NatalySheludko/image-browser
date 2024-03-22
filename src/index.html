@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla App Template</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <section>
+      <form class="gallery-form" autocomplete="off">
+        <input
+          class="search-img"
+          type="text"
+          name="imgName"
+          placeholder="Search images..."
+        />
+        <button class="btn-search" type="submit">Search</button>
+      </form>
+    </section>
+
+    <section>
+      <div class="loader"></div>
+    </section>
+
+    <section>
+      <ul class="gallery"></ul>
+    </section>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
