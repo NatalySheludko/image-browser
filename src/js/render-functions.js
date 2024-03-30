@@ -1,4 +1,4 @@
-export default function createImgGallery(images) {
+export function createImgGallery(images) {
   return images
     .map(
       ({
@@ -9,11 +9,11 @@ export default function createImgGallery(images) {
         views,
         comments,
         downloads,
-      }) => `<li class="gallery-item">
+			}) => `<li class="gallery-item">			
 			<div class="img-wrap">
 			<a class="img-link" href="${largeImageURL}">
-			<img class="gallery-image" src="${webformatURL}" alt="${tags}" />
-			</a></div>	
+			<img class="gallery-image" src="${webformatURL}" alt="${tags}" loading="lazy" />
+			</a></div>			
 			<ul class="data-wrapper">
 				<li class="wrap-item">
 					<p class="wrap-title">Likes</p>
