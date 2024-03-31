@@ -34,23 +34,22 @@ async function onHandleSubmit(e) {
   page = 1;
 
   if (!images) {
-    iziToast.error({
-      position: "topRight",
-      backgroundColor: "#e4a5ac",
-      close: true,
-      messageColor: "#774144",
-      message:
-        "❗Sorry, there are no images matching your search query. Please try again!",
-    });
-    hiddenLoading();
-    hiddenLoadMoreBtn();
+    showDataStatusError();
     return;
   }
 
   try {
     showLoading();
+    hiddenLoadMoreBtn();
     const data = await getImgGallery(images, page);
     totalPages = Math.ceil(data.totalHits / perPage);
+
+    if (data.hits.length === 0) {
+      showDataStatusError();
+      e.target.reset();
+      return;
+    }
+
     const markupGallery = createImgGallery(data.hits);
     refs.galleryContainer.insertAdjacentHTML("beforeend", markupGallery);
     gallery.refresh();
@@ -80,8 +79,21 @@ async function onLoadMoreClick() {
   checkLoadBtnStatus();
 }
 
+function showDataStatusError() {
+  hiddenLoadMoreBtn();
+  iziToast.error({
+    position: "topRight",
+    backgroundColor: "#e4a5ac",
+    close: true,
+    messageColor: "#774144",
+    message:
+      "❗Sorry, there are no images matching your search query. Please try again!",
+  });
+  hiddenLoading();
+}
+
 function showLoadMoreBtn() {
-	refs.loadMoreBtn.classList.remove("visually-hidden");
+  refs.loadMoreBtn.classList.remove("visually-hidden");
 }
 
 function hiddenLoadMoreBtn() {
