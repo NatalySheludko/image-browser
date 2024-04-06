@@ -28,7 +28,7 @@ hiddenLoading();
 async function onHandleSubmit(e) {
   e.preventDefault();
 
-  images = e.target.elements.imgName.value;
+  images = e.target.elements.imgName.value.trim();
 
   refs.galleryContainer.innerHTML = "";
   page = 1;
